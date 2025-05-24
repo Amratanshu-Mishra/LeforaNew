@@ -22,7 +22,6 @@ if (!fs.existsSync(uploadsDir)) {
 app.use(
   cors({
     origin: "https://lefora-is1ax0kwh-macks-projects-d09f140d.vercel.app", // your frontend deployed URL
-    credentials: true, // if you use cookies or auth headers
   })
 ); // Consider limiting to specific origins in production
 app.use(express.json());
