@@ -1,0 +1,430 @@
+:root {
+  --primary-color: #0079d3;
+  --secondary-color: #ff4500;
+  /* --background-color: #dae0e6; */
+  --text-color: #000000;
+  --card-bg: #ffffff;
+  --border-color: #ccc;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+  --vote-button-size: 24px;
+  /* --comment-bg: #f6f7f8;  */
+  --comment-hover-bg: #ebedf0;
+}
+
+/* body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+} */
+
+.post-details-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.post-card {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: var(--card-bg);
+  border-radius: 4px;
+  box-shadow: 0 1px 3px var(--shadow-color);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  position: relative;
+  transition: var(--transition);
+}
+
+.post-title {
+  font-size: 1.8rem;
+  color: var(--text-color);
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  width: 80%;
+}
+
+.post-content {
+  width: 100%;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.post-metadata {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+}
+
+.post-author {
+  font-weight: 600;
+  color: var(--text-color);
+  width: 100%;
+}
+
+.post-likes {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.like-button {
+  background-color: transparent;
+  border: none;
+  color: var(--text-light);
+  font-size: var(--vote-button-size);
+  cursor: pointer;
+  transition: var(--transition);
+  padding: 0;
+  margin-right: 4px;
+}
+
+.like-button:hover {
+  color: var(--secondary-color);
+}
+
+.post-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.post-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.comments-section {
+  background-color: var(--card-bg);
+  border-radius: 4px;
+  box-shadow: 0 1px 3px var(--shadow-color);
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.comments-title {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+.comment {
+  background-color: var(--comment-bg);
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: var(--transition);
+  box-shadow: 0 1px 2px var(--shadow-color);
+}
+
+.comment:hover {
+  background-color: var(--comment-hover-bg);
+}
+
+.comment-text {
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+
+.comment-metadata {
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin-bottom: 0.3rem;
+}
+
+.comment-author {
+  font-weight: 600;
+  color: var(--text-color);
+  margin-right: 0.5rem;
+}
+
+.comment-date {
+  color: var(--text-color);
+}
+
+.comment-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.comment-action {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.comment-action:hover {
+  color: var(--primary-color);
+}
+
+.comment-form {
+  margin-top: 1rem;
+  background-color: var(--comment-bg);
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.input-comment {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: var(--transition);
+  background-color: var(--card-bg);
+  min-height: 100px;
+  resize: vertical;
+}
+
+.input-comment:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(0, 121, 211, 0.2);
+}
+
+.submit-comment {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 0.5rem;
+}
+
+.submit-comment:hover {
+  background-color: #005a9c;
+}
+
+@media (max-width: 768px) {
+  .post-details-container {
+    padding: 0 0.5rem;
+  }
+
+  .post-card,
+  .comments-section {
+    padding: 0.75rem;
+  }
+
+  .post-title {
+    font-size: 1.5rem;
+  }
+
+  .post-content {
+    font-size: 0.9rem;
+  }
+
+  .post-images {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+.post-likes {
+  margin-top: 10px; /* Space above the likes section */
+  display: flex; /* Flexbox to align likes count and button */
+  align-items: center; /* Center vertically */
+}
+
+.like-button {
+  margin-left: 10px; /* Space between likes count and button */
+  cursor: pointer; /* Indicate that the button is clickable */
+  background: none; /* Remove background */
+  border: none; /* No border */
+  font-size: 20px; /* Adjust font size for visibility */
+  color: #e63946; /* Color of the heart */
+  transition: transform 0.2s; /* Smooth transition for hover */
+}
+
+.like-button:hover {
+  transform: scale(1.2); /* Slightly enlarge on hover */
+}
+/* ... (previous styles remain unchanged) ... */
+
+.comment {
+  background-color: var(--comment-bg);
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: var(--transition);
+  box-shadow: 0 1px 2px var(--shadow-color);
+}
+
+.comment:hover {
+  background-color: var(--comment-hover-bg);
+}
+
+.comment-author {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: var(--text-color);
+  margin-bottom: 0.3rem;
+}
+
+.comment-text {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+.comment-date {
+  font-size: 0.8rem;
+  color: var(--text-color);
+}
+
+/* ... (rest of the styles remain unchanged) ... */
+/* Container of the dropdown button */
+.dropdown {
+  position: relative; /* Ensures the dropdown menu is positioned relative to this container */
+  display: inline-block;
+  margin-left: auto;
+}
+
+/* Dropdown button */
+.dropdown-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+  position: absolute;
+  top: 0; /* Align to the top of the container */
+  right: 10; /* Align to the right of the container */
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 10px;
+  min-width: 100px;
+  z-index: 100; /* Ensure it appears on top */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-menu button {
+  background: none;
+  border: none;
+  padding: 5px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown-menu button:hover {
+  background-color: #f1f1f1;
+}
+.like-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #000;
+}
+
+.like-button:disabled {
+  cursor: not-allowed;
+  color: #f00; /* Red heart when liked */
+}
+
+.like-button:not(:disabled) {
+  color: #000; /* Black heart when not liked */
+}
+/* PostDetails.css */
+.post-details-container {
+  padding: 20px;
+}
+
+.post-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.edit-post-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-input,
+.edit-textarea,
+.comment-input {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-submit-button,
+.edit-submit-button,
+.cancel-edit-button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.comment-submit-button:hover,
+.edit-submit-button:hover,
+.cancel-edit-button:hover {
+  background-color: #76c885;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+}
+
+.dropdown-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.edit-option,
+.delete-option {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.edit-option:hover,
+.delete-option:hover {
+  background-color: #f0f0f0;
+}

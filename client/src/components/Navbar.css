@@ -1,0 +1,278 @@
+/* Navbar Container */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 30px; /* Reduced padding for a slimmer look */
+  background-color: var(--offwhite); /* Darker background */
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Reduced shadow for a cleaner look */
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.navbar h5 {
+  margin: 0;
+}
+
+/* Centering the Search Bar */
+.search-container {
+  display: flex;
+  justify-content: center;
+  flex: 1; /* Take up available space */
+}
+
+/* Logo */
+.logo a {
+  color: #000000; /* Black color for branding */
+  font-size: 1.6rem; /* Reduced font size for logo */
+  text-decoration: none;
+  font-weight: 600; /* Slightly lighter font weight */
+  transition: color 0.3s ease;
+}
+
+.logo a:hover {
+  color: #000000; /* No change on hover */
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  width: 100%; /* Ensure the search bar takes full width of its container */
+  max-width: 500px; /* Define a max width for the search bar */
+}
+
+.search-bar input {
+  padding: 5px !important; /* Reduced padding */
+  border-radius: 25px; /* Rounded corners */
+  border: 1px solid #000000; /* Black border */
+  width: 100%; /* Take full width */
+  height: 35px; /* Reduced height */
+  background-color: #ffffff;
+  color: #333;
+  font-size: 0.9rem; /* Slightly smaller font size */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for focus */
+}
+
+.search-bar input:focus {
+  outline: none;
+  border-color: #000000; /* Darker border on focus */
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Shadow on focus */
+}
+
+.search-bar button {
+  padding: 8px 15px; /* Reduced padding */
+  margin-left: 10px;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 20px; /* Slightly smaller radius */
+  cursor: pointer;
+  font-size: 0.9rem; /* Reduced font size */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Add transform transition */
+}
+
+.search-bar button:hover {
+  background-color: #388e3c; /* Darker green on hover */
+  transform: scale(1.05); /* Slight scaling effect on hover */
+}
+
+/* Auth Section & Profile */
+.auth-section {
+  display: flex;
+  align-items: center;
+}
+
+/* Align the links on the right side */
+.right-side {
+  display: flex;
+  align-items: center;
+}
+
+/* Auth Section Links */
+.auth-section a {
+  color: #000000;
+  text-decoration: none;
+  font-size: 1.1rem; /* Slightly smaller font size */
+  margin-left: 15px; /* Reduced margin */
+  transition: color 0.3s ease;
+}
+
+.auth-section a:hover {
+  color: #4caf50; /* Green on hover */
+}
+
+/* Profile and Dropdown */
+.profile {
+  position: relative;
+  display: inline-block;
+}
+
+.profile img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 8px;
+  object-fit: cover;
+  border: 2px solid #4caf50; /* Green border around profile picture */
+  transition: transform 0.3s ease; /* Smooth transition for scaling */
+}
+
+.profile img:hover {
+  transform: scale(1.1); /* Slight scaling effect on hover */
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  position: absolute;
+  top: 20px; /* Set a value slightly larger than the height of the profile icon */
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+#navDrop {
+  top: 63px !important;
+}
+
+.dropdown-menu button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 14px;
+  text-align: left;
+  width: 100%;
+}
+
+.dropdown-menu button:hover {
+  background-color: #f5f5f5;
+}
+
+/* Profile Logo */
+.profileLogo {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 8px;
+  object-fit: cover;
+}
+
+/* Navbar Lefora Shop Link */
+.shop-link {
+  color: #070807; /* Bright color to contrast with the navbar */
+  font-weight: 600;
+  margin-left: 15px;
+  margin-right: 15px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.shop-link a {
+  color: #000000;
+}
+
+.shop-link:hover {
+  color: #ffffff; /* Change to white on hover */
+}
+
+/* Navbar Lefora Cart Link */
+.shop-cart {
+  color: #070807; /* Bright color to contrast with the navbar */
+  font-weight: 600;
+  margin-left: 15px;
+  margin-right: 15px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.shop-cart a {
+  color: #000000;
+}
+
+.shop-cart:hover {
+  color: #ffffff; /* Change to white on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-bar {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .auth-section a {
+    margin-left: 10px;
+  }
+
+  .dropdown-content {
+    right: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo a {
+    font-size: 1.4rem; /* Slightly smaller logo */
+  }
+
+  .auth-section a {
+    font-size: 0.8rem; /* Smaller font size */
+    margin-left: 5px;
+  }
+
+  .profile img {
+    width: 30px; /* Reduced size */
+    height: 30px; /* Reduced size */
+  }
+
+  .search-bar input {
+    height: 35px; /* Reduced height */
+  }
+}
+
+.nav-link {
+  text-decoration: none;
+  color: inherit;
+  padding: 5px;
+  position: relative;
+  color: black; /* Default color */
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -21px;
+  width: 0; /* Start with no underline */
+  height: 2px;
+  background-color: transparent;
+  transition: width 0.3s ease;
+}
+
+.nav-link.active {
+  color: green; /* Set active link text color */
+}
+
+.nav-link.active::after {
+  width: 100%; /* Full-width underline for active links */
+  background-color: green; /* Green underline */
+}
+
+.nav-link:hover::after {
+  width: 100%; /* Show underline on hover */
+  background-color: green; /* Green underline on hover */
+}
