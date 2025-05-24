@@ -19,7 +19,12 @@ if (!fs.existsSync(uploadsDir)) {
 }
 
 // Middleware to parse JSON and handle CORS
-app.use(cors()); // Consider limiting to specific origins in production
+app.use(
+  cors({
+    origin: "https://lefora-is1ax0kwh-macks-projects-d09f140d.vercel.app", // your frontend deployed URL
+    credentials: true, // if you use cookies or auth headers
+  })
+); // Consider limiting to specific origins in production
 app.use(express.json());
 
 // Serve static files from the uploads folder
