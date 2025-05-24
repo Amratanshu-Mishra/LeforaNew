@@ -15,7 +15,7 @@ import ThankYouPage from "./pages/ThankYouPage";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import SearchResults from "./components/SearchResults";
-
+const API_URL = process.env.REACT_APP_API_URL;
 function App() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true); // Track loading state
@@ -29,7 +29,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/api/posts")
+      .get(`${API_URL}/api/posts`)
       .then((response) => {
         setData(response.data);
         setLoading(false); // Set loading to false once data is fetched

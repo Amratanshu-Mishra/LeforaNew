@@ -8,7 +8,7 @@ import { FaHeart, FaCommentAlt } from "react-icons/fa"; // Import icons
 import "./home.css";
 import img1 from "../assets/img/p1.svg";
 import { useAuth } from "../services/AuthContext"; // Import AuthContext
-
+const API_URL = process.env.REACT_APP_API_URL;
 const Home = () => {
   const [posts, setPosts] = useState([]);
   const [isOverlayOpen, setIsOverlayOpen] = useState(false); // Overlay state
@@ -25,7 +25,7 @@ const Home = () => {
   // Fetch posts on component mount
   useEffect(() => {
     axios
-      .get("http://localhost:3001/api/posts")
+      .get(`${API_URL}/api/posts`)
       .then((res) => {
         const sortedPosts = res.data.sort(
           (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
@@ -45,7 +45,7 @@ const Home = () => {
     }
 
     axios
-      .post(`http://localhost:3001/api/posts/${postId}/toggle-like`, { userId })
+      .post(`${API_URL}/api/posts/${postId}/toggle-like`, { userId })
       .then((res) => {
         const updatedPosts = posts.map((post) =>
           post._id === postId ? res.data.post : post
@@ -77,7 +77,7 @@ const Home = () => {
     }
 
     axios
-      .post("http://localhost:3001/api/posts", formData, {
+      .post(`${API_URL}/api/posts`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -92,7 +92,7 @@ const Home = () => {
         setSelectedImages([]); // Clear selected images
         setIsOverlayOpen(false); // Close overlay
         // Fetch updated posts
-        return axios.get("http://localhost:3001/api/posts");
+        return axios.get(`${API_URL}/api/posts`);
       })
       .then((res) => {
         const sortedPosts = res.data.sort(
@@ -247,7 +247,7 @@ const Home = () => {
                           {" "}
                           {/* Added a div for image box */}
                           <img
-                            src={`http://localhost:3001/${image}`}
+                            src={`${API_URL}/${image}`}
                             alt=""
                             className="post-image"
                           />

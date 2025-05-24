@@ -18,12 +18,12 @@ export default function PostDetails({ currentPage, handleNavClick }) {
   const [editedContent, setEditedContent] = useState(""); // State for edited content
   const dropdownRef = useRef(null); // Reference to the dropdown element
   const navigate = useNavigate();
-
+  const API_URL = process.env.REACT_APP_API_URL;
   // Fetch post data
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const res = await axios.get(`http://localhost:3001/api/posts/${id}`);
+        const res = await axios.get(`${API_URL}/api/posts/${id}`);
         setPost(res.data);
         if (currentUser) {
           // Check if the current user has already liked the post
@@ -40,13 +40,10 @@ export default function PostDetails({ currentPage, handleNavClick }) {
   const handleAddComment = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        `http://localhost:3001/api/posts/${id}/comments`,
-        {
-          author: currentUser ? currentUser.username : "Anonymous",
-          text: comment,
-        }
-      );
+      const res = await axios.post(`${API_URL}/api/posts/${id}/comments`, {
+        author: currentUser ? currentUser.username : "Anonymous",
+        text: comment,
+      });
       setPost(res.data.post); // Update the post data after adding the comment
       setComment(""); // Clear the comment input field
     } catch (err) {
@@ -58,7 +55,7 @@ export default function PostDetails({ currentPage, handleNavClick }) {
   const handleEditPost = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.put(`http://localhost:3001/api/posts/${id}`, {
+      const res = await axios.put(`${API_URL}/api/posts/${id}`, {
         title: editedTitle || post.title, // Use edited title or fallback to original
         content: editedContent || post.content, // Use edited content or fallback to original
         images: post.images, // Keep the original images during editing
@@ -80,7 +77,7 @@ export default function PostDetails({ currentPage, handleNavClick }) {
     if (!confirmDelete) return; // Exit if the user cancels
 
     try {
-      await axios.delete(`http://localhost:3001/api/posts/${id}`);
+      await axios.delete(`${API_URL}/api/posts/${id}`);
       navigate("/");
       alert("Post deleted successfully!"); // Notify the user
     } catch (error) {
@@ -96,10 +93,9 @@ export default function PostDetails({ currentPage, handleNavClick }) {
     if (!currentUser) return; // Ensure user is logged in
 
     try {
-      const res = await axios.post(
-        `http://localhost:3001/api/posts/${id}/toggle-like`,
-        { userId: currentUser.id }
-      );
+      const res = await axios.post(`${API_URL}/api/posts/${id}/toggle-like`, {
+        userId: currentUser.id,
+      });
       setPost(res.data.post); // Update the post data after liking/unliking
       setHasLiked(res.data.post.likedBy.includes(currentUser.id)); // Update like status
     } catch (err) {
@@ -158,7 +154,7 @@ export default function PostDetails({ currentPage, handleNavClick }) {
                   {post.images.map((image, index) => (
                     <img
                       key={index}
-                      src={`http://localhost:3001/${image}`} // Ensure correct path for images
+                      src={`${API_URL}/${image}`} // Ensure correct path for images
                       alt="Post"
                       className="post-image"
                     />
@@ -220,7 +216,7 @@ export default function PostDetails({ currentPage, handleNavClick }) {
                   {post.images.map((image, index) => (
                     <img
                       key={index}
-                      src={`http://localhost:3001/${image}`} // Ensure correct path for images
+                      src={`${API_URL}/${image}`} // Ensure correct path for images
                       alt="Post"
                       className="post-image"
                     />

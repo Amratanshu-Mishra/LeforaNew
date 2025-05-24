@@ -27,7 +27,7 @@ export default function Profile({ currentPage, handleNavClick }) {
   const [changingPassword, setChangingPassword] = useState(false);
   const [expandedOrder, setExpandedOrder] = useState(null);
   const [posts, setPosts] = useState([]);
-
+  const API_URL = process.env.REACT_APP_API_URL;
   useEffect(() => {
     const fetchUserProfileAndOrdersAndPosts = async () => {
       if (!userId) {
@@ -42,20 +42,20 @@ export default function Profile({ currentPage, handleNavClick }) {
 
         // Fetch user profile
         const userResponse = await axios.get(
-          `http://localhost:3001/api/users/profile/${userId}`
+          `${API_URL}/api/users/profile/${userId}`
         );
         const user = userResponse.data;
         setUser(user);
 
         // Fetch user orders
         const ordersResponse = await axios.get(
-          `http://localhost:3001/api/orders/user/${userId}`
+          `${API_URL}/api/orders/user/${userId}`
         );
         setOrders(ordersResponse.data.orders);
 
         // Fetch user posts using the author field (assume it's username or email)
         const postsResponse = await axios.get(
-          `http://localhost:3001/api/posts/author/${user.username}` // or use `user.email` if author is based on email
+          `${API_URL}/api/posts/author/${user.username}` // or use `user.email` if author is based on email
         );
         setPosts(postsResponse.data); // Assuming response.data contains the list of posts
       } catch (err) {
@@ -74,10 +74,7 @@ export default function Profile({ currentPage, handleNavClick }) {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(
-        `http://localhost:3001/api/users/profile/${userId}`,
-        user
-      );
+      await axios.put(`${API_URL}/api/users/profile/${userId}`, user);
       alert("Profile updated successfully!");
       setEditing(false);
     } catch (err) {
@@ -95,7 +92,7 @@ export default function Profile({ currentPage, handleNavClick }) {
 
     try {
       const res = await axios.put(
-        `http://localhost:3001/api/users/change-password/${userId}`,
+        `${API_URL}/api/users/change-password/${userId}`,
         { currentPassword, newPassword }
       );
       alert(res.data.message || "Password changed successfully!");
@@ -256,7 +253,7 @@ export default function Profile({ currentPage, handleNavClick }) {
                       {post.images.map((image, index) => (
                         <img
                           key={index}
-                          src={`http://localhost:3001/${image}`}
+                          src={`${API_URL}/${image}`}
                           alt=""
                           className="post-image"
                         />

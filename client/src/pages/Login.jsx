@@ -10,13 +10,13 @@ function Login({ currentPage, handleNavClick }) {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { login } = useAuth(); // Get the login function from AuthContext
-
+  const API_URL = process.env.REACT_APP_API_URL;
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Logging in with:", email, password); // Debug: Log email and password
 
     try {
-      const result = await axios.post("http://localhost:3001/api/users/login", {
+      const result = await axios.post(`${API_URL}/api/users/login`, {
         email,
         password,
       });

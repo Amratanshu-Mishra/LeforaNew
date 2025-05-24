@@ -3,7 +3,7 @@ import { useLocation, Link } from "react-router-dom";
 import axios from "axios"; // Import axios
 import Navbar from "./Navbar";
 import "./SearchResults.css"; // Import the CSS file
-
+const API_URL = process.env.REACT_APP_API_URL;
 function SearchResults() {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -21,9 +21,7 @@ function SearchResults() {
       const fetchResults = async () => {
         try {
           console.log(`Fetching results for query: ${query}`); // Log the fetch action
-          const response = await axios.get(
-            `http://localhost:3001/api/search?q=${query}`
-          );
+          const response = await axios.get(`${API_URL}/api/search?q=${query}`);
           console.log("API Response:", response.data); // Log the API response
           setResults(response.data); // Update the results state
         } catch (err) {
@@ -69,7 +67,7 @@ function SearchResults() {
                     <h2>{result.title}</h2>
                     {result.images.length > 0 && (
                       <img
-                        src={`http://localhost:3001/${result.images[0]}`} // Update to use correct image URL
+                        src={`h${API_URL}/${result.images[0]}`} // Update to use correct image URL
                         alt={result.title}
                         className="result-image"
                       />

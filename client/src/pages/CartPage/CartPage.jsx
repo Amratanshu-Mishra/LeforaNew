@@ -27,7 +27,7 @@ const CartPage = ({ currentPage, handleNavClick }) => {
   const [errors, setErrors] = useState({});
   const [paymentMethod, setPaymentMethod] = useState("");
   const [showPayPal, setShowPayPal] = useState(false);
-
+  const API_URL = process.env.REACT_APP_API_URL;
   const totalPrice = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
@@ -66,17 +66,14 @@ const CartPage = ({ currentPage, handleNavClick }) => {
 
   const handleApprove = async (orderID) => {
     try {
-      const response = await axios.post(
-        "http://localhost:3001/api/orders/create",
-        {
-          userId: currentUser.id, // Include user ID
-          cartItems,
-          deliveryInfo,
-          totalPrice,
-          paymentMethod: "PayPal",
-          orderID,
-        }
-      );
+      const response = await axios.post(`${API_URL}/api/orders/create`, {
+        userId: currentUser.id, // Include user ID
+        cartItems,
+        deliveryInfo,
+        totalPrice,
+        paymentMethod: "PayPal",
+        orderID,
+      });
 
       if (response.data.message === "Order saved successfully!") {
         setErrors({});
@@ -94,17 +91,14 @@ const CartPage = ({ currentPage, handleNavClick }) => {
         setShowPayPal(true);
       } else {
         try {
-          const response = await axios.post(
-            "http://localhost:3001/api/orders/create",
-            {
-              userId: currentUser.id, // Include user ID
-              cartItems,
-              deliveryInfo,
-              totalPrice,
-              scheduleDate: deliveryInfo.scheduleDate,
-              paymentMethod: paymentMethod === "cod" ? "COD" : "POS",
-            }
-          );
+          const response = await axios.post(`${API_URL}/api/orders/create`, {
+            userId: currentUser.id, // Include user ID
+            cartItems,
+            deliveryInfo,
+            totalPrice,
+            scheduleDate: deliveryInfo.scheduleDate,
+            paymentMethod: paymentMethod === "cod" ? "COD" : "POS",
+          });
           if (response.data.message === "Order saved successfully!") {
             navigate("/thankYou");
           }

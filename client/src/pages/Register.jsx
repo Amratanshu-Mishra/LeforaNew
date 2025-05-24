@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./register.css"; // Your custom CSS
 import Navbar from "../components/Navbar";
-
+const API_URL = process.env.REACT_APP_API_URL;
 function Register({ currentPage, handleNavClick }) {
   const [userName, setName] = useState(""); // Set default to empty string
   const [email, setEmail] = useState(""); // Set default to empty string
@@ -13,7 +13,7 @@ function Register({ currentPage, handleNavClick }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3001/api/users/register", {
+      .post(`${API_URL}/api/users/register`, {
         name: userName,
         email,
         password,
@@ -22,7 +22,7 @@ function Register({ currentPage, handleNavClick }) {
         console.log(result);
         // After successful registration, send the thank you email
         axios
-          .post("http://localhost:3001/api/send-email", {
+          .post(`${API_URL}/api/send-email`, {
             userEmail: email, // Pass the user's email
             userName: userName, // Pass the user's name
             // _id is removed here
